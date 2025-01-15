@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Name Generator</title>
+  <link rel="stylesheet" href="ngen.css">
+  <script>
+    var text = document.getElementById("text");
+    let vowels = ['a', 'e', 'i', 'o', 'u'];
+    let consonants = ['b', 'c', 'd', 'f', 'g', 'h', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v'];
+    let rarecons = ['y', 'v', 'x'];
+    let vpairs = ['ee', 'oo', 'ea', 'ou', 'oi', 'io'];
+
+    function genname() {
+      var nchars = Math.round(Math.random() * 3 + 2);
+      var name = "";
+      var rand = 0;
+
+      if (Math.ceil(Math.random() * 2) == 1) {
+        rand = 1;
+      } else {
+        rand = 2;
+      }
+
+      var chosenChar = 0;
+
+      for (var i = 0; i < nchars; i++) {
+        switch (rand) {
+          case 1:
+            chosenChar = Math.round(Math.random() * 4);
+            name += vowels[chosenChar];
+            break;
+          case 2:
+            chosenChar = Math.round(Math.random() * 14);
+            name += consonants[chosenChar];
+            break;
+          case 3:
+            chosenChar = Math.round(Math.random() * 5);
+            name += vpairs[chosenChar];
+            break;
+        }
+
+        if (rand == 1 || rand == 3) {
+          rand = 2;
+        } else if (rand == 2) {
+          rand = Math.ceil(Math.random() * 2) == 1 ? 1 : 3;
+        }
+
+        if (i == nchars - 1) {
+          rand = Math.ceil(Math.random() * 2) == 1 ? 1 : rand == 2 ? 1 : 2;
+        }
+      }
+
+      if (vpairs.includes(name[name.length - 2] + name[name.length - 1])) {
+        chosenChar = Math.round(Math.random() * 15);
+        name += consonants[chosenChar];
+      }
+
+      return name;
+    }
+
+    function gen() {
+      text.innerHTML = genname();
+    }
+  </script>
+</head>
+<body>
+  <div class="title centre">Random Name Generator</div>
+  <div class="centre"><input type="button" value="Generate" class="btn" onclick="gen()"></div>
+  <div class="centre text" id="text"></div>
+  <script src="ngen.js"></script>
+</body>
+</html>
