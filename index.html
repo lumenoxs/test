@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Random Name Generator</title>
   <link rel="stylesheet" href="ngen.css">
+</head>
+<body>
+  <div class="title centre">Random Name Generator</div>
+  <div class="centre text" id="text"></div>
   <script>
     var text = document.getElementById("text");
     let vowels = ['a', 'e', 'i', 'o', 'u'];
@@ -62,10 +66,5 @@
 
     text.innerHTML = genname();
   </script>
-</head>
-<body>
-  <div class="title centre">Random Name Generator</div>
-  <div class="centre text" id="text"></div>
-  <script src="ngen.js"></script>
 </body>
 </html>
